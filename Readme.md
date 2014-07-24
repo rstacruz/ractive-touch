@@ -4,6 +4,7 @@ ractive-touch
 Touch events for [Ractive].
 
 ```html
+<button on-tap="activate">
 <button on-swipeleft="buttonSwipe">
 ```
 
