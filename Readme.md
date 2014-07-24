@@ -22,18 +22,25 @@ ractive.on('buttonSwipe', function (e) {
 Install
 -------
 
-    $ npm i --save rstacruz/ractive-touch
+Ractive-touch is available via npm and Bower.
 
-And require it:
+    $ npm install --save rstacruz/ractive-touch
+    $ bower install --save rstacruz/ractive-touch
+
+__CommonJS usage:__ Require the module to use it. It automatically registers
+itself into either *window.Ractive* or *require('ractive')*, whichever's
+available. No need to use the return value.
 
 ```js
-require('ractive-touch')
+require('ractive-touch');
 ```
 
-It automatically registers itself into *Ractive*. For those not using npm, it's 
-also available as a [standalone .js file](index.js).
+__Standalone usage:__ For those not using npm, it's also available as a
+[standalone .js file](index.js). Be sure to include it after
+[ractive.js][Ractive] and [hammer.js][Hammer.js].
 
-It's recommended to add a `viewport` meta tag to your HTML restricting zoom:
+__Viewport:__ It's recommended to add a `viewport` meta tag to your HTML
+restricting zoom:
 
 ```html
 <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
@@ -159,5 +166,6 @@ Authored and maintained by Rico Sta. Cruz with help from [contributors].
 [Tap]: http://hammerjs.github.io/recognizer-tap.html
 [Pan]: http://hammerjs.github.io/recognizer-pan.html
 [Press]: http://hammerjs.github.io/recognizer-press.html
+[Pinch]: http://hammerjs.github.io/recognizer-pinch.html
 [Rotate]: http://hammerjs.github.io/recognizer-rotate.html
 [Swipe]: http://hammerjs.github.io/recognizer-swipe.html

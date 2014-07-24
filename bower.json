@@ -1,0 +1,29 @@
+{
+  "name": "ractive-touch",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rstacruz/ractive-touch",
+  "authors": [
+    "Rico Sta. Cruz <hi@ricostacruz.com>"
+  ],
+  "description": "Touch events for Ractive",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "touch",
+    "ractive"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ractive": "0",
+    "hammerjs": "2"
+  }
+}
