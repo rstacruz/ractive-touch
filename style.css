@@ -1,0 +1,28 @@
+html, body {
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+html {
+  background: #fff;
+  color: #444;
+}
+
+.the-box {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: #ddd;
+  margin: 40px auto;
+  border-radius: 4px;
+}
+
+.top-headline {
+}
+
+.top-headline h1 {
+  font-size: 4em;
+  font-weight: 100;
+  text-align:center;
+}
