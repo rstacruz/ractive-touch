@@ -22,7 +22,8 @@ html {
 }
 
 .top-headline h1 {
-  font-size: 4em;
+  font-family: helvetica neue, sans-serif;
+  font-size: 3em;
   font-weight: 100;
   text-align:center;
 }

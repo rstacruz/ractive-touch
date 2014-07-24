@@ -22,8 +22,14 @@
   },
   "devDependencies": {
     "beefy": "^2.1.0",
+    "chai": "^1.9.1",
+    "coffee-script": "^1.7.1",
     "hammerjs": "2",
-    "ractive": "0"
+    "jsdom": "^0.11.1",
+    "mocha": "^1.21.0",
+    "ractive": "0",
+    "sinon": "^1.10.3",
+    "sinon-chai": "^2.5.0"
   },
   "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
   "license": "MIT",

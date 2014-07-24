@@ -16,12 +16,31 @@
   // http://hammerjs.github.io/recognizer-pan.html
   // http://hammerjs.github.io/recognizer-press.html
   var Events = {
-    tap: ['tap'],
-    swipe: ['swipeleft', 'swiperight', 'swipeup', 'swipedown'],
-    pan: ['pan', 'panstart', 'panmove', 'panend', 'pancancel',
-      'panleft', 'panright', 'panup', 'pandown'],
-    press: ['press'],
-    rotate: ['rotate', 'rotatestart', 'rotatemove', 'rotateend',
+    tap: [
+      'tap' ],
+    swipe: [
+      'swipe',
+      'swipeleft',
+      'swiperight',
+      'swipeup',
+      'swipedown' ],
+    pan: [
+      'pan',
+      'panstart',
+      'panmove',
+      'panend',
+      'pancancel',
+      'panleft',
+      'panright',
+      'panup',
+      'pandown'],
+    press: [
+      'press'],
+    rotate: [
+      'rotate',
+      'rotatestart',
+      'rotatemove',
+      'rotateend',
       'rotatecancel']
   };
 
@@ -53,20 +72,9 @@
 
   function buildEventHandler (eventName, parent) {
     return function (node, fire) {
-      // set options
-      var attr = 'data-' + (parent || eventName),
-          json = node.getAttribute(attr),
-          opts;
-
-      // try to get options
-      if (json) {
-        try {
-          opts = JSON.parse(json);
-        } catch (e) {
-          throw new Error("ractive-touch: invalid "+attr+" value: "+json);
-        }
-        hammer(node).set(eventName, opts);
-      }
+      // set hammer options
+      var options = getData(node, parent);
+      if (options) hammer(node).get(parent).set(options);
 
       // register the handler
       hammer(node).on(eventName, function (e) {
@@ -87,17 +95,59 @@
   }
 
   /**
+   * getData : getData(node, key)
+   * (private) Returns options for a given DOM node.
+   *
+   *     node = <div data-swipe-direction='left' data-swipe-threshold='2'>
+   *
+   *     getData(node, 'swipe')
+   *     => { direction: 'left', threshold: 2 }
+   */
+
+  function getData (node, key) {
+    var attrs = node.attributes,
+        output,
+        re = new RegExp("^(?:data-)?"+key+"-(.*)$");
+
+    for (var i = attrs.length-1; i >= 0; i--) {
+      var attr = attrs[i],
+          m = attr.name.match(re);
+
+      if (!m) continue;
+      if (!output) output = {};
+      output[m[1]] = val(attr.value);
+    }
+
+    return output;
+  }
+
+  /**
+   * val : val(str)
+   * (private) Value-izes a given string. Used by `getData()`.
+   *
+   *     val("100")   => 100
+   *     val("true")  => true
+   *     val("right") => "right"
+   */
+
+  function val (str) {
+    if (str.match && str.match(/^-?\d+$/)) return +str;
+    if (str === 'true') return true;
+    if (str === 'false') return false;
+    if (str === 'null') return null;
+    if (str === 'undefined') return undefined;
+    return str;
+  }
+
+  /**
    * hammer : hammer(node)
    * (private) Returns the `HammerManager` instance for the given node.
    */
 
   function hammer (node) {
     if (node._hammer) return node._hammer;
-    console.log("Registering hammer", node);
     node._hammer = new Hammer(node, {});
     return node._hammer;
   }
-
-  window.Hammer = Hammer;
 
 }));
