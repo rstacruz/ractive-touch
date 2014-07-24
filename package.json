@@ -1,6 +1,6 @@
 {
   "name": "ractive-touch",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Touch events for Ractive. Supports tap, pan, swipe, rotate, pinch, and press.",
   "main": "index.js",
   "scripts": {
