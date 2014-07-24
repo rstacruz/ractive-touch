@@ -1,7 +1,7 @@
 {
   "name": "ractive-touch",
   "version": "0.0.0",
-  "description": "",
+  "description": "Touch events for Ractive. Supports tap, pan, swipe, rotate, pinch, and press.",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
@@ -14,7 +14,13 @@
   "keywords": [
     "ractive",
     "touch",
-    "hammerjs"
+    "hammerjs",
+    "pan",
+    "pinch",
+    "rotate",
+    "tap",
+    "swipe",
+    "press"
   ],
   "peerDependencies": {
     "ractive": "0",

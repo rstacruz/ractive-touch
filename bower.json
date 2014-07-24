@@ -6,13 +6,20 @@
   "authors": [
     "Rico Sta. Cruz <hi@ricostacruz.com>"
   ],
-  "description": "Touch events for Ractive",
+  "description": "Touch events for Ractive. Supports tap, pan, swipe, rotate, pinch, and press.",
   "moduleType": [
     "globals"
   ],
   "keywords": [
+    "ractive",
     "touch",
-    "ractive"
+    "hammerjs",
+    "pan",
+    "pinch",
+    "rotate",
+    "tap",
+    "swipe",
+    "press"
   ],
   "license": "MIT",
   "ignore": [

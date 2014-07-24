@@ -1,7 +1,7 @@
 ractive-touch
 =============
 
-Touch events for [Ractive].
+Touch events for [Ractive]. Supports tap, pan, swipe, rotate, pinch, and press.
 
 ```html
 <button on-tap="activate">
