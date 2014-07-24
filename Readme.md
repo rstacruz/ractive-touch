@@ -30,7 +30,7 @@ Ractive-touch is available via npm and Bower.
     $ npm install --save ractive-touch
     $ bower install --save ractive-touch
 
-[![npm version](https://img.shields.io/npm/v/ractive-touch.png)](https://npmjs.org/package/ractive-touch "View this project on npm")
+[![npm version](http://badge.fury.io/js/ractive-touch.svg)](https://npmjs.org/package/ractive-touch "View this project on npm")
 
 __CommonJS usage:__ Require the module to use it. It automatically registers
 itself into either *window.Ractive* or *require('ractive')*, whichever's
