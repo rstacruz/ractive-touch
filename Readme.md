@@ -30,19 +30,17 @@ And require it:
 require('ractive-touch')
 ```
 
-It automatically registers itself into `Ractive`.
-
-For those not using npm, it's also available as a [standalone .js 
-file](index.js).
+It automatically registers itself into *Ractive*. For those not using npm, it's 
+also available as a [standalone .js file](index.js).
 
 Available events
 ----------------
 
-Tap:
+[Tap]:
 
  - `on-tap`
 
-Swipe:
+[Swipe]:
 
  - `on-swipe`
  - `on-swipeleft`
@@ -50,7 +48,7 @@ Swipe:
  - `on-swipeup`
  - `on-swipedown`
 
-Pan:
+[Pan]:
 
  - `on-pan`
  - `on-panstart`
@@ -62,11 +60,11 @@ Pan:
  - `on-panup`
  - `on-pandown`
 
-Press:
+[Press]:
 
  - `on-press`
 
-Rotate:
+[Rotate]:
 
  - `on-rotate`
  - `on-rotatestart`
@@ -77,13 +75,15 @@ Rotate:
 Options
 -------
 
-You can configure options via attributes.
+You can configure options via attributes in your DOM node.
+You can use the `data-` attribute convention as well.
 
 ```html
 <div on-pan='move' pan-direction='all'>
+<div on-pan='move' data-pan-direction='all'> <!-- alternate syntax -->
 ```
 
-[Tap](http://hammerjs.github.io/recognizer-tap.html):
+[Tap]:
 
  * `tap-pointers='1'`
  * `tap-taps='1'`
@@ -92,25 +92,25 @@ You can configure options via attributes.
  * `tap-threshold='2'`
  * `tap-posThreshold='10'`
 
-[Pan](http://hammerjs.github.io/recognizer-pan.html):
+[Pan]:
 
  * `pan-pointers='1'`
  * `pan-threshold='1'`
  * `pan-direction='all'`
 
-[Swipe](http://hammerjs.github.io/recognizer-swipe.html):
+[Swipe]:
 
  * `swipe-pointers='1'`
  * `swipe-distance='10'`
  * `swipe-direction='all'`
  * `swipe-velocity='0.65'`
 
-[Rotate](http://hammerjs.github.io/recognizer-rotate.html):
+[Rotate]:
 
  * `rotate-pointers='2'`
  * `rotate-threshold='0'`
 
-[Press](http://hammerjs.github.io/recognizer-press.html):
+[Press]:
 
  * `press-pointers='1'`
  * `press-threshold='5'`
@@ -134,3 +134,8 @@ Authored and maintained by Rico Sta. Cruz with help from [contributors].
 [Ractive]: http://ractivejs.org
 [Hammer.js]: http://hammerjs.github.io/api.html
 
+[Tap]: http://hammerjs.github.io/recognizer-tap.html
+[Pan]: http://hammerjs.github.io/recognizer-pan.html
+[Press]: http://hammerjs.github.io/recognizer-press.html
+[Rotate]: http://hammerjs.github.io/recognizer-rotate.html
+[Swipe]: http://hammerjs.github.io/recognizer-swipe.html
