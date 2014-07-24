@@ -25,8 +25,8 @@ Install
 
 Ractive-touch is available via npm and Bower.
 
-    $ npm install --save rstacruz/ractive-touch
-    $ bower install --save rstacruz/ractive-touch
+    $ npm install --save ractive-touch
+    $ bower install --save ractive-touch
 
 __CommonJS usage:__ Require the module to use it. It automatically registers
 itself into either *window.Ractive* or *require('ractive')*, whichever's
