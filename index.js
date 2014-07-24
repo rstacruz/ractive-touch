@@ -150,7 +150,7 @@
    */
 
   function val (str, key) {
-    if (str.match && str.match(/^-?\d+$/)) return +str;
+    if (str.match && str.match(/^-?\d+(?:\.\d+)?$/)) return +str;
     return (magicValues[key] && magicValues[key][str]) ||
       magicValues.all[str] || str;
   }

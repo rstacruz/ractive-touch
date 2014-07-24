@@ -8,7 +8,21 @@ describe 'Ractive-touch:', ->
       expect(Ractive.events.swipe).be.a 'function'
       expect(Ractive.events.swipeleft).be.a 'function'
 
-  describe 'simple', ->
+  beforeEach ->
+    @hammer = -> @view?.nodes?.div?._hammer
+
+  describe 'a simple case a decimal option', ->
+    beforeEach ->
+      View = Ractive.extend
+        template: "<div id='div' on-swipeleft='x' swipe-velocity='0.5'>"
+      @view = new View(el: 'body')
+
+    it 'sets the right velocity (float)', ->
+      v = @hammer().get('swipe').options.velocity
+      expect(v).be.a 'number'
+      expect(v).eql 0.5
+
+  describe 'a simple case with options', ->
     beforeEach ->
       sinon.spy Hammer.Manager::, 'on'
       View = Ractive.extend
