@@ -1,0 +1,34 @@
+{
+  "name": "ractive-touch",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "example": "beefy index.js --cwd sandbox --live"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rstacruz/ractive-touch.git"
+  },
+  "keywords": [
+    "ractive",
+    "touch",
+    "hammerjs"
+  ],
+  "peerDependencies": {
+    "ractive": "0",
+    "hammer": "2"
+  },
+  "devDependencies": {
+    "beefy": "^2.1.0",
+    "hammerjs": "2",
+    "ractive": "0"
+  },
+  "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rstacruz/ractive-touch/issues"
+  },
+  "homepage": "https://github.com/rstacruz/ractive-touch"
+}
