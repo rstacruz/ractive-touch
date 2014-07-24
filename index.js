@@ -115,7 +115,7 @@
 
       if (!m) continue;
       if (!output) output = {};
-      output[m[1]] = val(attr.value, attr.name);
+      output[m[1]] = val(attr.value, m[1]);
     }
 
     return output;
@@ -137,7 +137,8 @@
 
   function val (str, key) {
     if (str.match && str.match(/^-?\d+$/)) return +str;
-    return magicValues[key][str] || magicValues.all[str] || str;
+    return (magicValues[key] && magicValues[key][str]) ||
+      magicValues.all[str] || str;
   }
 
   magicValues = {
