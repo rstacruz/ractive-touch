@@ -1,7 +1,7 @@
 var Sandbox = Ractive.extend({
   template: [
     "<div class='the-box' id='box'",
-    "data-swipe-distance='100'",
+    "data-swipe-distance='1'",
     "on-tap='tap'",
     "on-swipeleft='swipeleft'",
     "on-swiperight='swiperight'",
