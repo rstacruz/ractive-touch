@@ -139,7 +139,8 @@ You can use the `data-` attribute convention as well.
 
 ## Acknowledgements
 
-Powered by [Hammer.js].
+Ractive-touch is powered by [Hammer.js]. Refer to their documentation for more
+details.
 
 ## Thanks
 
