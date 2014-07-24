@@ -33,6 +33,12 @@ require('ractive-touch')
 It automatically registers itself into *Ractive*. For those not using npm, it's 
 also available as a [standalone .js file](index.js).
 
+It's recommended to add a `viewport` meta tag to your HTML restricting zoom:
+
+```html
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+```
+
 Available events
 ----------------
 

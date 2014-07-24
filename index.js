@@ -84,6 +84,12 @@
       var options = getData(node, parent);
       if (options) hammer(node).get(parent).set(options);
 
+      // pinch and rotate need to be explicitly enabled
+      // Ref: http://hammerjs.github.io/getting-started.html
+      if (parent === 'pinch' || parent === 'rotate') {
+        hammer(node).get(parent).set({ enable: true });
+      }
+
       // register the handler
       hammer(node).on(eventName, function (e) {
         fire({
