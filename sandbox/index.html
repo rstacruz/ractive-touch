@@ -17,27 +17,16 @@
 
   <div id="sandbox"></div>
 
-
   <div class="share-buttons">
     <iframe src="http://ghbtns.com/github-btn.html?user=rstacruz&repo=ractive-touch&type=watch&count=true&size=large"
       allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
   </div>
 
-  <script>
-    function script(src) {
-      var s = document.createElement('script');
-      s.src = src;
-      document.getElementsByTagName("head")[0].appendChild(s);
-    }
-    if (~location.hostname.indexOf('ricostacruz.com')) {
-      script("https://cdn.rawgit.com/hammerjs/hammer.js/2.0.1/hammer.js");
-      script("https://cdn.rawgit.com/ractivejs/ractive/v0.5.5/ractive.js");
-      script("https://cdn.rawgit.com/rstacruz/ractive-touch/v0.0.0/index.js");
-    } else {
-      script("index.js");
-    }
-    script("script.js");
-  </script>
+  <script src="https://cdn.rawgit.com/hammerjs/hammer.js/2.0.1/hammer.js"></script>
+  <script src="https://cdn.rawgit.com/ractivejs/ractive/v0.5.5/ractive.js"></script>
+  <script src="https://cdn.rawgit.com/rstacruz/ractive-touch/v0.0.0/index.js"></script>
+  <script src="index.js"></script>
+  <script src="script.js"></script>
   
 </div>
 </body>
