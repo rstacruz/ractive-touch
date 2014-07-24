@@ -115,29 +115,49 @@
 
       if (!m) continue;
       if (!output) output = {};
-      output[m[1]] = val(attr.value);
+      output[m[1]] = val(attr.value, attr.name);
     }
 
     return output;
   }
 
+  var magicValues;
+
   /**
-   * val : val(str)
-   * (private) Value-izes a given string. Used by `getData()`.
+   * val : val(str, key)
+   * (private) Value-izes a given string. Used by `getData()`. If `key` is
+   * given, it can also transform magic values for that given key.
    *
    *     val("100")   => 100
    *     val("true")  => true
    *     val("right") => "right"
+   *
+   *     val("all", "direction") => Hammer.DIRECTION_ALL
    */
 
-  function val (str) {
+  function val (str, key) {
     if (str.match && str.match(/^-?\d+$/)) return +str;
-    if (str === 'true') return true;
-    if (str === 'false') return false;
-    if (str === 'null') return null;
-    if (str === 'undefined') return undefined;
-    return str;
+    return magicValues[key][str] || magicValues.all[str] || str;
   }
+
+  magicValues = {
+    all: {
+      'true': true,
+      'false': false,
+      'undefined': undefined,
+      'null': null
+    },
+    direction: {
+      'none': Hammer.DIRECTION_NONE,
+      'all': Hammer.DIRECTION_ALL,
+      'up': Hammer.DIRECTION_UP,
+      'down': Hammer.DIRECTION_DOWN,
+      'left': Hammer.DIRECTION_LEFT,
+      'right': Hammer.DIRECTION_RIGHT,
+      'horizontal': Hammer.DIRECTION_HORIZONTAL,
+      'vertical': Hammer.DIRECTION_VERTICAL
+    }
+  };
 
   /**
    * hammer : hammer(node)
