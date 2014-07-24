@@ -38,6 +38,10 @@ a:hover {
   margin: auto;
 }
 
+#sandbox {
+  min-height: 180px;
+}
+
 .box-container {
   position: relative;
   display: -webkit-box;
@@ -139,7 +143,7 @@ a:hover {
 
 .top-headline a,
 .top-headline a:visited {
-  color: #444;
+  color: #888;
   text-decoration: none;
 }
 
@@ -149,6 +153,7 @@ a:hover {
 
 .share-buttons {
   text-align: center;
+  padding-top: 40px;
 }
 
 .share-buttons iframe {
