@@ -22,7 +22,7 @@ ractive.on('buttonSwipe', function (e) {
 Install
 -------
 
-    $ npm i --save ractive-touch
+    $ npm i --save rstacruz/ractive-touch
 
 And require it:
 
@@ -74,8 +74,6 @@ Rotate:
  - `on-rotateend`
  - `on-rotatecancel`
 
- [Ractive]: http://ractivejs.org
-
 Options
 -------
 
@@ -118,6 +116,10 @@ You can configure options via attributes.
  * `press-threshold='5'`
  * `press-time='500'`
 
+## Acknowledgements
+
+Powered by [Hammer.js].
+
 ## Thanks
 
 **Ractive-touch** © 2014+, Rico Sta. Cruz. Released under the [MIT License].<br>
@@ -129,3 +131,6 @@ Authored and maintained by Rico Sta. Cruz with help from [contributors].
 
 [MIT License]: http://mit-license.org/
 [contributors]: http://github.com/rstacruz/ractive-touch/contributors
+[Ractive]: http://ractivejs.org
+[Hammer.js]: http://hammerjs.github.io/api.html
+
