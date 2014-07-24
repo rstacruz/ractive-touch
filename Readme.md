@@ -72,6 +72,16 @@ Available events
  - `on-rotateend`
  - `on-rotatecancel`
 
+[Pinch]:
+
+ - `on-pinch`
+ - `on-pinchstart`
+ - `on-pinchmove`
+ - `on-pinchend`
+ - `on-pinchcancel`
+ - `on-pinchin`
+ - `on-pinchout`
+
 Options
 -------
 
@@ -115,6 +125,11 @@ You can use the `data-` attribute convention as well.
  * `press-pointers='1'`
  * `press-threshold='5'`
  * `press-time='500'`
+
+[Pinch]:
+
+ * `pinch-pointers='2'`
+ * `pinch-threshold='0'`
 
 ## Acknowledgements
 

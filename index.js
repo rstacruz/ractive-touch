@@ -41,7 +41,15 @@
       'rotatestart',
       'rotatemove',
       'rotateend',
-      'rotatecancel']
+      'rotatecancel'],
+    pinch: [
+      'pinch',
+      'pinchstart',
+      'pinchmove',
+      'pinchend',
+      'pinchcancel',
+      'pinchin',
+      'pinchout']
   };
 
   // bind all events using buildEvent
