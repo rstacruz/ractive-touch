@@ -57,6 +57,7 @@ Available events
 [Tap]:
 
  - `on-tap`
+ - `on-doubletap`
 
 [Swipe]:
 
