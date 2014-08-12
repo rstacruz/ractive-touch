@@ -18,6 +18,8 @@
   var Events = {
     tap: [
       'tap' ],
+    doubletap: [
+      'doubletap' ],
     swipe: [
       'swipe',
       'swipeleft',
