@@ -24,7 +24,7 @@
   ],
   "peerDependencies": {
     "ractive": "0",
-    "hammer": "2"
+    "hammerjs": "2"
   },
   "devDependencies": {
     "beefy": "^2.1.0",
