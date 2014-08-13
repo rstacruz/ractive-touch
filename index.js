@@ -11,10 +11,8 @@
 
 }(this, function (Ractive, Hammer) {
 
-  // http://hammerjs.github.io/recognizer-tap.html
-  // http://hammerjs.github.io/recognizer-swipe.html
-  // http://hammerjs.github.io/recognizer-pan.html
-  // http://hammerjs.github.io/recognizer-press.html
+  // Check the recognizers documentation.
+  // http://hammerjs.github.io/recognizer-tap
   var Events = {
     tap: [
       'tap' ],
