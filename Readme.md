@@ -125,13 +125,13 @@ You can use the `data-` attribute convention as well.
 
  * `pan-pointers='1'`
  * `pan-threshold='1'`
- * `pan-direction='all'`
+ * `pan-direction='all'` *
 
 [Swipe]:
 
  * `swipe-pointers='1'`
  * `swipe-distance='10'`
- * `swipe-direction='all'`
+ * `swipe-direction='all'` *
  * `swipe-velocity='0.65'`
 
 [Rotate]:
@@ -149,6 +149,9 @@ You can use the `data-` attribute convention as well.
 
  * `pinch-pointers='2'`
  * `pinch-threshold='0'`
+
+`*` - directions can be *none, all, up, down, left, right, horizontal, 
+  vertical*.
 
 ## Acknowledgements
 
@@ -169,9 +172,9 @@ Authored and maintained by Rico Sta. Cruz with help from [contributors].
 [Ractive]: http://ractivejs.org
 [Hammer.js]: http://hammerjs.github.io/api.html
 
-[Tap]: http://hammerjs.github.io/recognizer-tap.html
-[Pan]: http://hammerjs.github.io/recognizer-pan.html
-[Press]: http://hammerjs.github.io/recognizer-press.html
-[Pinch]: http://hammerjs.github.io/recognizer-pinch.html
-[Rotate]: http://hammerjs.github.io/recognizer-rotate.html
-[Swipe]: http://hammerjs.github.io/recognizer-swipe.html
+[Tap]: http://hammerjs.github.io/recognizer-tap
+[Pan]: http://hammerjs.github.io/recognizer-pan
+[Press]: http://hammerjs.github.io/recognizer-press
+[Pinch]: http://hammerjs.github.io/recognizer-pinch
+[Rotate]: http://hammerjs.github.io/recognizer-rotate
+[Swipe]: http://hammerjs.github.io/recognizer-swip
