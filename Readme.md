@@ -20,7 +20,7 @@ ractive.on('buttonSwipe', function (e) {
 })
 ```
 
-[![Status](https://travis-ci.org/rstacruz/ractive-touch.svg?branch=master)](https://travis-ci.org/rstacruz/ractive-touch)  
+[![Status](http://img.shields.io/travis/rstacruz/ractive-touch/master.svg?style=flat)](https://travis-ci.org/rstacruz/ractive-touch)
 
 Install
 -------
@@ -30,7 +30,7 @@ Ractive-touch is available via npm and Bower.
     $ npm install --save ractive-touch
     $ bower install --save ractive-touch
 
-[![npm version](http://badge.fury.io/js/ractive-touch.svg)](https://npmjs.org/package/ractive-touch "View this project on npm")
+[![npm version](http://img.shields.io/npm/v/ractive-touch.svg?style=flat)](https://npmjs.org/package/ractive-touch "View this project on npm")
 
 __CommonJS usage:__ Require the module to use it. It automatically registers
 itself into either *window.Ractive* or *require('ractive')*, whichever's
