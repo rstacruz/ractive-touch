@@ -153,12 +153,15 @@ You can use the `data-` attribute convention as well.
 `*` - directions can be *none, all, up, down, left, right, horizontal, 
   vertical*.
 
-## Acknowledgements
-
-Ractive-touch is powered by [Hammer.js]. Refer to their documentation for more
-details.
-
 ## Thanks
+
+Ractive-touch is written for [Ractive], a live DOM binding library for creating 
+interactive UIs.
+
+Touch event detection is powered by [Hammer.js]. Refer to their documentation 
+for more details.
+
+:copyright:
 
 **Ractive-touch** © 2014+, Rico Sta. Cruz. Released under the [MIT License].<br>
 Authored and maintained by Rico Sta. Cruz with help from [contributors].
