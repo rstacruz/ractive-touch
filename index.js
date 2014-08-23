@@ -1,12 +1,15 @@
 ;(function (root, factory) {
 
-  factory(ractive(), hammer());
-
-  function ractive() {
-    return root.Ractive || require('ractive');
+  if (typeof define === 'function' && define.amd) {
+    define(['ractive', 'hammerjs'], factory);
   }
-  function hammer() {
-    return root.Hammer || require('hammerjs');
+
+  else if (typeof module !== 'undefined') {
+    factory(require('ractive'), require('hammerjs'));
+  }
+
+  else {
+    factory(root.Ractive, root.Hammer);
   }
 
 }(this, function (Ractive, Hammer) {
