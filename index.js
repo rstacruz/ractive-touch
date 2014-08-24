@@ -36,15 +36,15 @@
       'panleft',
       'panright',
       'panup',
-      'pandown'],
+      'pandown' ],
     press: [
-      'press'],
+      'press' ],
     rotate: [
       'rotate',
       'rotatestart',
       'rotatemove',
       'rotateend',
-      'rotatecancel'],
+      'rotatecancel' ],
     pinch: [
       'pinch',
       'pinchstart',
@@ -52,8 +52,10 @@
       'pinchend',
       'pinchcancel',
       'pinchin',
-      'pinchout']
+      'pinchout' ]
   };
+
+  var aliases;
 
   // bind all events using buildEvent
   for (var parent in Events) {
@@ -138,27 +140,30 @@
     return output;
   }
 
-  var magicValues;
-
   /**
    * val : val(str, key)
-   * (private) Value-izes a given string. Used by `getData()`. If `key` is
-   * given, it can also transform magic values for that given key.
+   * (private) Value-izes a given string `str`, converting it to a number as
+   * needed. If `key` is given, it can also resolve aliases for that given
+   * key.
+   *
+   * Used by `getData()`. 
    *
    *     val("100")   => 100
-   *     val("true")  => true
    *     val("right") => "right"
-   *
-   *     val("all", "direction") => Hammer.DIRECTION_ALL
+   *     val("right", "direction") => Hammer.DIRECTION_RIGHT
    */
 
   function val (str, key) {
     if (str.match && str.match(/^-?\d+(?:\.\d+)?$/)) return +str;
-    return (magicValues[key] && magicValues[key][str]) ||
-      magicValues.all[str] || str;
+    return (aliases[key] && aliases[key][str]) ||
+      aliases.all[str] || str;
   }
 
-  magicValues = {
+  /*
+   * Aliases for `val()`.
+   */
+
+  aliases = {
     all: {
       'true': true,
       'false': false,
