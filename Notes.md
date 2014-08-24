@@ -1,8 +1,7 @@
 Releasing new versions:
 
     bump *.json
-    git release v1.0.0
-    npm publish
+    npm test && npm publish && git release v1.0.0
 
 Updating the website:
 
