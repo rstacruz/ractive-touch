@@ -1,3 +1,7 @@
+## v0.3.0 - August 24, 2014
+
+ * Fix AMD compatibility. (#2, @Rich-Harris)
+
 ## v0.2.0 - August 12, 2014
 
  * Fix wrong dependency to `hammer` instead of `hammerjs`.
