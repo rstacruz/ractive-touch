@@ -83,6 +83,7 @@
     pinch: {
       recognizerClass: Hammer.Pinch,
       options: {},
+      recognizeWith: ['rotate'],
       events: [
         'pinch',
         'pinchstart',
