@@ -39,6 +39,9 @@ describe 'Ractive-touch:', ->
     it 'creates a hammer instance', ->
       expect(@hammer()).be.a 'object'
 
+    it 'creates the recognizer', ->
+      expect(@hammer().get('swipe')).be.a 'object'
+
     it 'sets swipe direction (direction)', ->
       expect(@hammer().get('swipe').options.direction).eql Hammer.DIRECTION_LEFT
 
