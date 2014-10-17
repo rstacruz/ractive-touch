@@ -16,53 +16,95 @@
 
   // Check the recognizers documentation.
   // http://hammerjs.github.io/recognizer-tap
-  var Events = {
-    tap: [
-      'tap' ],
-    doubletap: [
-      'doubletap' ],
-    swipe: [
-      'swipe',
-      'swipeleft',
-      'swiperight',
-      'swipeup',
-      'swipedown' ],
-    pan: [
-      'pan',
-      'panstart',
-      'panmove',
-      'panend',
-      'pancancel',
-      'panleft',
-      'panright',
-      'panup',
-      'pandown' ],
-    press: [
-      'press' ],
-    rotate: [
-      'rotate',
-      'rotatestart',
-      'rotatemove',
-      'rotateend',
-      'rotatecancel' ],
-    pinch: [
-      'pinch',
-      'pinchstart',
-      'pinchmove',
-      'pinchend',
-      'pinchcancel',
-      'pinchin',
-      'pinchout' ]
+
+  var defaults = {
+    tap: {
+      recognizerClass: Hammer.Tap,
+      options: {
+        time: 500
+      },
+      events: [
+        'tap' 
+      ]
+    },
+    doubletap: {
+      recognizerClass: Hammer.Tap,
+      options: {taps: 2, event: 'doubletap'},
+      recognizeWith: ['tap'],
+      events: [
+        'doubletap' 
+      ]
+    },
+    swipe: {
+      recognizerClass: Hammer.Swipe,
+      options: {},
+      events: [
+        'swipe',
+        'swipeleft',
+        'swiperight',
+        'swipeup',
+        'swipedown' 
+      ]
+    },
+    pan: {
+      recognizerClass: Hammer.Pan,
+      options: { direction: Hammer.DIRECTION_HORIZONTAL },
+      recognizeWith: ['swipe'],
+      events: [
+        'pan',
+        'panstart',
+        'panmove',
+        'panend',
+        'pancancel',
+        'panleft',
+        'panright',
+        'panup',
+        'pandown' 
+      ]
+    },
+    press: {
+      recognizerClass: Hammer.Press,
+      options: {},
+      events: [
+        'press' 
+      ]
+    },
+    rotate: {
+      recognizerClass: Hammer.Rotate,
+      options: {},
+      events: [
+        'rotate',
+        'rotatestart',
+        'rotatemove',
+        'rotateend',
+        'rotatecancel' 
+      ]
+    },
+    pinch: {
+      recognizerClass: Hammer.Pinch,
+      options: {},
+      recognizeWith: ['rotate'],
+      events: [
+        'pinch',
+        'pinchstart',
+        'pinchmove',
+        'pinchend',
+        'pinchcancel',
+        'pinchin',
+        'pinchout' 
+      ]
+    }
   };
 
   var aliases;
 
   // bind all events using buildEvent
-  for (var parent in Events) {
-    if (!Events.hasOwnProperty(parent)) continue;
-    var names = Events[parent];
-    for (var i = names.length-1; i >= 0; i--) {
-      buildEvent(names[i], parent);
+  for (var recognizerName in defaults) {
+    if (!defaults.hasOwnProperty(recognizerName)) continue;
+    
+    var events = defaults[recognizerName].events;
+    for (var i = 0; i < events.length; i++) {
+      buildEvent(events[i], recognizerName, defaults[recognizerName]);
     }
   }
 
@@ -73,8 +115,8 @@
    *     buildEvent('panstart', 'pan');
    */
 
-  function buildEvent (eventName, parent) {
-    Ractive.events[eventName] = buildEventHandler(eventName, parent);
+  function buildEvent(eventName, recognizerName, recognizerConfig) {
+    Ractive.events[eventName] = buildEventHandler(eventName, recognizerName, recognizerConfig);
   }
 
   /**
@@ -83,20 +125,29 @@
    * registered to `Ractive.events`.
    */
 
-  function buildEventHandler (eventName, parent) {
+  function buildEventHandler(eventName, recognizerName, recognizerConfig) {
     return function (node, fire) {
-      // set hammer options
-      var options = getData(node, parent);
-      if (options) hammer(node).get(parent).set(options);
+      
+      var hammerManager = getHammerManager(node);
 
-      // pinch and rotate need to be explicitly enabled
-      // Ref: http://hammerjs.github.io/getting-started.html
-      if (parent === 'pinch' || parent === 'rotate') {
-        hammer(node).get(parent).set({ enable: true });
+      var recognizerExists = (hammerManager.get(recognizerName) != null);
+
+      if (!recognizerExists) {
+        // init with default options
+        var recognizer = new recognizerConfig.recognizerClass(recognizerConfig.options)
+
+        // Hammer.Recognizer.set merges it on top of the defaults supplied above
+        var options = parseOptions(node, recognizerName);
+        if (options)
+          recognizer.set(options);
+
+        hammerManager.add(recognizer);
+        
+        updateRecognizeWith(hammerManager);
       }
 
       // register the handler
-      hammer(node).on(eventName, function (e) {
+      hammerManager.on(eventName, function (e) {
         fire({
           node: node,
           original: e
@@ -105,7 +156,7 @@
 
       // handle exits
       function teardown() {
-        hammer(node).destroy();
+        getHammerManager(node).destroy();
         delete node._hammer;
       }
 
@@ -114,16 +165,43 @@
   }
 
   /**
-   * getData : getData(node, key)
+   * updateRecognizeWith : updateRecognizeWith(hammerManager)
+   * (private) Sets recognizeWith if defaults have it
+   *
+   * Since we add recognizers dynamically and without any strict order,
+   *  we need to guard against trying to set a requireWith for a recognizer
+   *  that haven't been created yet.
+   * 
+   */
+  function updateRecognizeWith(hammerManager) {
+    for (var i = 0; i < hammerManager.recognizers.length; i++) {
+      var recognizer = hammerManager.recognizers[i];
+      var recognizerName = recognizer.options.event;
+
+      if (!defaults[recognizerName].hasOwnProperty('recognizeWith')) continue;
+      
+      var recognizeWiths = defaults[recognizerName].recognizeWith;
+      for (var k = 0; k < recognizeWiths.length; k++) {
+        // Verify that the recgonizer we're trying to depend on is really there
+        if (!hammerManager.get(recognizeWiths[k])) continue;
+
+        // It's safe to recognizeWith multiple times for the same recognizer
+        recognizer.recognizeWith(recognizeWiths[k])
+      }
+    }
+  }
+
+  /**
+   * parseOptions : parseOptions(node, key)
    * (private) Returns options for a given DOM node.
    *
    *     node = <div data-swipe-direction='left' data-swipe-threshold='2'>
    *
-   *     getData(node, 'swipe')
+   *     parseOptions(node, 'swipe')
    *     => { direction: 'left', threshold: 2 }
    */
 
-  function getData (node, key) {
+  function parseOptions(node, key) {
     var attrs = node.attributes,
         output,
         re = new RegExp("^(?:data-)?"+key+"-(.*)$");
@@ -134,26 +212,26 @@
 
       if (!m) continue;
       if (!output) output = {};
-      output[m[1]] = val(attr.value, m[1]);
+      output[m[1]] = parseHammerValue(attr.value, m[1]);
     }
 
     return output;
   }
 
   /**
-   * val : val(str, key)
+   * parseHammerValue : parseHammerValue(str, key)
    * (private) Value-izes a given string `str`, converting it to a number as
    * needed. If `key` is given, it can also resolve aliases for that given
    * key.
    *
    * Used by `getData()`. 
    *
-   *     val("100")   => 100
-   *     val("right") => "right"
-   *     val("right", "direction") => Hammer.DIRECTION_RIGHT
+   *     parseHammerValue("100")   => 100
+   *     parseHammerValue("right") => "right"
+   *     parseHammerValue("right", "direction") => Hammer.DIRECTION_RIGHT
    */
 
-  function val (str, key) {
+  function parseHammerValue(str, key) {
     if (str.match && str.match(/^-?\d+(?:\.\d+)?$/)) return +str;
     return (aliases[key] && aliases[key][str]) ||
       aliases.all[str] || str;
@@ -183,14 +261,18 @@
   };
 
   /**
-   * hammer : hammer(node)
+   * getHammerManager : getHammerManager(node)
    * (private) Returns the `HammerManager` instance for the given node.
    */
 
-  function hammer (node) {
+  function getHammerManager(node) {
     if (node._hammer) return node._hammer;
-    node._hammer = new Hammer(node, {});
+
+    node._hammer = new Hammer.Manager(node, {recognizers: []});
     return node._hammer;
   }
+
+
+  return {defaults: defaults};
 
 }));
