@@ -1,3 +1,7 @@
+## v0.4.0 - October 7, 2014
+
+ * ractive-touch now behaves consistently even if `Hammer.defaults` have been changed. (#5, @ErikPettersson)
+
 ## v0.3.0 - August 24, 2014
 
  * Fix AMD compatibility. (#2, @Rich-Harris)
