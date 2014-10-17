@@ -29,7 +29,10 @@
     },
     doubletap: {
       recognizerClass: Hammer.Tap,
-      options: {taps: 2, event: 'doubletap'},
+      options: {
+        taps: 2,
+        event: 'doubletap'
+      },
       recognizeWith: ['tap'],
       events: [
         'doubletap' 
@@ -48,7 +51,9 @@
     },
     pan: {
       recognizerClass: Hammer.Pan,
-      options: { direction: Hammer.DIRECTION_HORIZONTAL },
+      options: {
+        direction: Hammer.DIRECTION_HORIZONTAL
+      },
       recognizeWith: ['swipe'],
       events: [
         'pan',
@@ -109,32 +114,31 @@
   }
 
   /**
-   * buildEvent : buildEvent(event, eventParent)
+   * buildEvent : buildEvent(event, recognizerName, config)
    * (private) registers an event handler for buildEvent.
    *
-   *     buildEvent('panstart', 'pan');
+   *     buildEvent('panstart', 'pan', { ... });
    */
 
-  function buildEvent(eventName, recognizerName, recognizerConfig) {
-    Ractive.events[eventName] = buildEventHandler(eventName, recognizerName, recognizerConfig);
+  function buildEvent(eventName, recognizerName, config) {
+    Ractive.events[eventName] = buildEventHandler(eventName, recognizerName, config);
   }
 
   /**
-   * buildEventHandler : buildEventHandler(event)
+   * buildEventHandler() : buildEventHandler(event, recognizerName, config)
    * (private) Creates the event handler for a given `eventName` that will be
    * registered to `Ractive.events`.
    */
 
-  function buildEventHandler(eventName, recognizerName, recognizerConfig) {
+  function buildEventHandler(eventName, recognizerName, config) {
     return function (node, fire) {
-      
       var hammerManager = getHammerManager(node);
 
-      var recognizerExists = (hammerManager.get(recognizerName) != null);
+      var recognizerExists = (hammerManager.get(recognizerName) !== null);
 
       if (!recognizerExists) {
         // init with default options
-        var recognizer = new recognizerConfig.recognizerClass(recognizerConfig.options)
+        var recognizer = new config.recognizerClass(config.options);
 
         // Hammer.Recognizer.set merges it on top of the defaults supplied above
         var options = parseOptions(node, recognizerName);
@@ -186,7 +190,7 @@
         if (!hammerManager.get(recognizeWiths[k])) continue;
 
         // It's safe to recognizeWith multiple times for the same recognizer
-        recognizer.recognizeWith(recognizeWiths[k])
+        recognizer.recognizeWith(recognizeWiths[k]);
       }
     }
   }
