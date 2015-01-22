@@ -14,5 +14,5 @@ afterEach  -> global.sinon.restore()
 before ->
   global.Ractive = require('ractive')
   global.Hammer = require('hammerjs')
-  require('../index')
+  require('../index')(global.Ractive)
 
