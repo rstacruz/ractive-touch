@@ -71,7 +71,8 @@
       recognizerClass: Hammer.Press,
       options: {},
       events: [
-        'press' 
+        'press',
+        'pressup'
       ]
     },
     rotate: {
