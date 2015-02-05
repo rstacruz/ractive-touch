@@ -72,7 +72,7 @@
       options: {},
       events: [
         'press',
-	'pressup'
+        'pressup'
       ]
     },
     rotate: {
