@@ -5,6 +5,8 @@ Touch events for [Ractive]. Supports tap, pan, swipe, rotate, pinch, and press.
 
 *Find more Ractive.js plugins at [docs.ractivejs.org/latest/plugins](http://docs.ractivejs.org/latest/plugins)*
 
+> Disambiguation: *This page is about ractive-touch, the JavaScript plugin. For the Ractiv Touch+ mouse, see [ractiv.com](http://www.ractiv.com/touch.html)*.
+
 ```html
 <button on-tap="activate">
 <button on-swipeleft="buttonSwipe">
