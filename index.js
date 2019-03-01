@@ -13,6 +13,9 @@
   }
 
 }(this, function (Ractive, Hammer) {
+  
+  Ractive = Ractive && Ractive.__esModule ? Ractive['default'] : Ractive;
+  Hammer  = Hammer && Hammer.__esModule ? Hammer['default'] : Hammer;
 
   // Check the recognizers documentation.
   // http://hammerjs.github.io/recognizer-tap
